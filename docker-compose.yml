@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  shadow_mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'shadow'
+      MYSQL_USER: 'shadow'
+      MYSQL_PASSWORD: 'shadow'
+      MYSQL_ROOT_PASSWORD: 'shadow'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - shadow_mysql:/var/lib/mysql
+      
+volumes:
+  shadow_mysql:
