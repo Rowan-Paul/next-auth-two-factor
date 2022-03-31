@@ -1,7 +1,8 @@
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
+import { useSession } from '../lib/useSession';
 
 const Homepage = (): JSX.Element => {
-  const { data: session } = useSession();
+  const session = useSession();
 
   if (session) {
     return <button onClick={() => signOut()}>Sign out</button>;
