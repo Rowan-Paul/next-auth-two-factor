@@ -1,6 +1,6 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 
-const Dashboard = (): JSX.Element => {
+const Homepage = (): JSX.Element => {
   const { data: session } = useSession();
 
   if (session) {
@@ -10,4 +10,4 @@ const Dashboard = (): JSX.Element => {
   return <button onClick={() => signIn()}>Sign in</button>;
 };
 
-export default Dashboard;
+export default Homepage;
