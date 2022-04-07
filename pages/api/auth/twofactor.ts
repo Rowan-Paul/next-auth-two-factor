@@ -17,7 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     case 'GET':
       try {
         if (session) {
-          const secret = speakeasy.generateSecret();
+          const secret = speakeasy.generateSecret({ name: "Rowan's two factor app" });
 
           return res.json({ secret });
         } else {
