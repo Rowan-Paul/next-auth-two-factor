@@ -10,7 +10,6 @@ import { IVerifyData } from './api/auth/verify';
 const TwoFactor = () => {
   const [secret, setSecret] = useState<any>();
   const [submitted, setSubmitted] = useState<boolean>();
-  const router = useRouter();
   const session = useSession();
 
   useEffect(() => {
@@ -25,7 +24,6 @@ const TwoFactor = () => {
 
   const onSubmitForm = (e: any) => {
     e.preventDefault();
-    setSubmitted(true);
 
     const data: IVerifyData = {
       token: e.target.code.value,
@@ -38,13 +36,14 @@ const TwoFactor = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then((response) => response.status === 201 && router.push('/'));
+    }).then((response) => response.status === 201 && setSubmitted(true));
   };
 
   if (submitted) {
     return (
       <div className="min-h-screen container m-auto px-20">
-        <h1>Saving two factor...</h1>
+        <h1 className="text-2xl">Two factor enabled!</h1>
+        <Link href="/">Go back home</Link>
       </div>
     );
   }
@@ -90,7 +89,12 @@ const TwoFactor = () => {
     }
   }
 
-  return <>Loading</>;
+  return (
+    <div className="min-h-screen container m-auto px-20">
+      <h1 className="text-2xl">Not logged in</h1>
+      <Link href="/">If you are stuck on this page, click here to go back home</Link>
+    </div>
+  );
 };
 
 export default TwoFactor;
