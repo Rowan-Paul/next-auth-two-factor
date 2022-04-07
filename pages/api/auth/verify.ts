@@ -21,9 +21,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           select: { twofactor: true }
         });
 
-        console.log(secret);
-        console.log(req.body.token);
-
         const verified = speakeasy.totp.verify({
           secret: secret.twofactor,
           encoding: 'ascii',
