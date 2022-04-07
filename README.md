@@ -1,14 +1,38 @@
 ## Before startup
 
+Start database
+
+```
+docker compose-up
+```
+
+Push schema to database
+
+```
 npx prisma db push
+```
+
+Install packages
+
+```
+yarn
+```
+
+Start dev server
+
+```
+yarn dev
+```
 
 ## Env variables
 
-DATABASE_URL
-NEXTAUTH_SECRET
-EMAIL_SERVER
-EMAIL_FROM
-NEXTAUTH_URL
+| Variable        |
+| --------------- |
+| DATABASE_URL    |
+| NEXTAUTH_SECRET |
+| EMAIL_SERVER    |
+| EMAIL_FROM      |
+| NEXTAUTH_URL    |
 
 ## Notes
 
