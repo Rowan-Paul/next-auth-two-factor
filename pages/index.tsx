@@ -23,7 +23,7 @@ const Homepage = (): JSX.Element => {
           </button>
         )}
       </div>
-      <h2 className="text-xl">Pages</h2>
+      <h2 className="text-xl mb-2">Pages</h2>
       <div>
         <Link href="/twofactor">
           <a className="p-2 bg-blue-300 rounded inline-block">Two factor</a>

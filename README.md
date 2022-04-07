@@ -1,5 +1,7 @@
 # next-auth-two-factor
 
+> **Tip:** if you want to check out the code, but don't want to clone the repo, press `.` on your keyboard
+
 Two factor authentication with next-auth using a custom `useSession` for checking if the user has two factor enabled.
 
 [Middleware from next-auth](https://next-auth.js.org/configuration/nextjs#middleware) does not work with email login, because it needs a JWT token (see also [this discussion](https://github.com/nextauthjs/next-auth/discussions/4265))
