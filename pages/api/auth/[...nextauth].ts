@@ -20,10 +20,5 @@ export default NextAuth({
       return Promise.resolve(session);
     }
   },
-  events: {
-    async signIn({ user }) {
-      console.log(user);
-    }
-  },
   secret: process.env.NEXTAUTH_SECRET
 });
