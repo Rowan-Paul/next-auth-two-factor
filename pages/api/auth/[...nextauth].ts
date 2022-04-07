@@ -6,7 +6,7 @@ import prisma from '../../../lib/prisma';
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
-  pages: { newUser: '/twofactor' },
+  pages: { newUser: '/twofactor/new' },
   providers: [
     EmailProvider({
       server: process.env.EMAIL_SERVER,

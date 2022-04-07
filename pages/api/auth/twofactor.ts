@@ -14,26 +14,39 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session: any = await getSession({ req });
 
   switch (req.method) {
-    case 'PUT':
+    case 'GET':
       try {
-        const secret = await prisma.user.findFirst({
-          where: { id: session.user.id },
-          select: { twofactor: true }
-        });
+        if (session) {
+          const secret = speakeasy.generateSecret();
 
-        console.log(secret);
-        console.log(req.body.token);
+          return res.json({ secret });
+        } else {
+          return res.status(401).end();
+        }
+      } catch (error) {
+        console.log(error);
+        return res.status(500).end();
+      }
 
+    case 'POST':
+      try {
         const verified = speakeasy.totp.verify({
-          secret: secret.twofactor,
+          secret: req.body.secret?.ascii,
           encoding: 'ascii',
           token: req.body.token
         });
 
         if (verified) {
-          return res.status(200).end();
-        } else {
-          return res.status(401).end();
+          await prisma.user.update({
+            where: {
+              id: session.user.id
+            },
+            data: {
+              twofactor: req.body.secret?.ascii
+            }
+          });
+
+          return res.status(201).end();
         }
       } catch (error) {
         console.log(error);

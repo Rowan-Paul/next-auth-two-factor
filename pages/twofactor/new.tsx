@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 
-import { useSession } from '../lib/useSession';
+import { useSession } from '../../lib/useSession';
 
-import { IVerifyData } from './api/auth/verify';
+import { IVerifyData } from '../api/auth/verify';
 
 const TwoFactor = () => {
   const [secret, setSecret] = useState<any>();
@@ -12,7 +12,7 @@ const TwoFactor = () => {
   const session = useSession();
 
   useEffect(() => {
-    fetch('/api/auth/verify', {
+    fetch('/api/auth/twofactor', {
       method: 'GET'
     })
       .then((response) => {
@@ -29,7 +29,7 @@ const TwoFactor = () => {
       secret
     };
 
-    fetch('/api/auth/verify', {
+    fetch('/api/auth/twofactor', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

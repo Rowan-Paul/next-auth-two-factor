@@ -24,7 +24,7 @@ export function useSession(): Session {
     if (session.user.twofactor) {
       return session;
     } else {
-      router.push('/twofactor');
+      router.push('/twofactor/new');
     }
   }
 
